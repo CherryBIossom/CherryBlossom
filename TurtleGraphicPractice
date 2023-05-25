@@ -1,0 +1,39 @@
+import math as m #math 모듈 = m
+import turtle as tu # turtle 모듈 = tu
+tu.shape('triangle') # 거북이 모양 삼각형으로 변경, 다른 모양도 가능
+tu.speed('fastest') # 그림 그리는 속력 최대
+angle0=int(input('(30,45,60)')) # 다른 각도도 가능
+dt=0.01 # 시간 간격
+t=0 # 처음 시각
+x=0 # 처음 x방향 값 (수평거리)
+y=171851/5 # 처음 y방향 값 (높이) = (학번/5)
+v=10 # 처음 속력
+g=9.80665 # 중력가속도 g
+Pi=m.pi # 원주율
+vx=v*m.cos(angle0*Pi/180) # 처음 x방향 속력, 도에서 라디안으로 단위 변경
+vy=v*m.sin(angle0*Pi/180) # 처음 y방향 속력, 도에서 라디안으로 단위 변경
+def angle(): # 각도 구하는 함수 선언
+  return m.atan(vy/vx)*180/Pi # atan = arctangent, 라디안에서 도로 단위 변경
+def distance(): # 이동거리 구하는 함수 선언
+  return m.sqrt(vx**2+vy**2) # sqrt = square root
+  
+
+while True:
+  vy-=g*dt # 매 순간 y방향 속도
+  y+=vy*dt-0.5*g*dt*dt # 매 순간 y방향 값
+  x+=vx*dt # 매 순간 x방향 값
+  t+=dt # 매 순간의 시각
+
+  tu.left(angle()) # 반복할 때마다 angle 함수 값 만큼 반시계방향으로 각도 변경 (단위: 도)
+  tu.forward(distance()) # 반복할 때마다 distance 함수 값 만큼 앞으로 이동
+  tu.setheading(0) # 반복할 때마다 각도 0도로 초기화
+
+  print('t={:.2f}, x={:.4f}, y={:.4f}, vx={:.3f}, vy={:.3f}'.format(t,x,y,vx,vy))
+  # t 단위가 0.01이기 때문에 소수점 2자리로 제한
+  # x, y 값 소수점 4자리로 제한
+  # vx, vy 값 소수점 3자리로 제한
+
+  if y<=171851/5:
+    break # y방향의 값이 처음 y방향 값보다 작거나 같을 경우 반복 중단
+
+print('The End') # 반복이 중단됐을 경우 'The End' 문구 출력
