@@ -1,0 +1,70 @@
+# import turtle as tu
+# import math as m
+# tu.shape('triangle')
+# Pi=m.pi #pi=3.14159265358979...radian
+# angle=float(input('(30,45,60):')) # =pi/6 radian
+# g=9.80665 # 중력가속도
+# x=0
+# y=171851/5 # 처음 높이 = 학번/5
+# v=10 # 초기속력
+# t=0
+# dt=0.01 # 시간 간격
+# vy=(v*m.sin(angle*Pi/180)) # radian
+# vx=(v*m.cos(angle*Pi/180)) # radian
+
+
+# while True:
+#   y+=y+vy*dt-0.5*g*dt*dt
+#   x+=vx*dt
+#   tu.left(angle) # 각도
+#   tu.forward(m.sqrt(vx**2+vy**2))
+#   angle=m.atan(vy/vx)
+  
+  
+#   # if y<=171851/5:
+#   #   break
+#   print("x:{:.3f},y:{:.3f},vx:{:.3f},vy:{:.3f}".format(x,y,vx,vy))
+# print('The End')
+
+
+import math as m
+import turtle as tu
+tu.shape('triangle')
+tu.speed(10)
+angle=int(input('(30,45,60)'))
+dt=0.01
+t=0
+x=0
+y=171851/5
+v=10
+g=9.80665
+Pi=m.pi
+vx=v*m.cos(angle*Pi/180) #라디안
+vy=v*m.sin(angle*Pi/180) #라디안
+x=x+vx*dt
+def angle():
+  return m.atan(vy/vx)*180/Pi
+def distance():
+  return m.sqrt(vx**2+vy**2)
+  
+
+while True:
+  vy-=g*dt
+  y=y+vy*dt-0.5*g*dt*dt
+  x=x+vx*dt
+
+  tu.left(angle())
+  tu.forward(distance())
+  tu.setheading(0)
+
+  print('x={:.3f},y={:.4f},vx={:.3f},vy={:.3f}'.format(x,y,vx,vy))
+
+  if y<171851/5:
+    break
+
+print('The End')
+
+# while True:
+#   tu.left()
+#   tu.forward()
+#   tu.setheading(0)
