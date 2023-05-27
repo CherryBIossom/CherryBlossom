@@ -1,1 +1,1 @@
-University Major Class_Python
+My first University Major coding Class_Python
