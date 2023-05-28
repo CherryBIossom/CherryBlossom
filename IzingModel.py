@@ -89,7 +89,7 @@ print('(-1)의 개수:',b)
 magnetization= float(a+b*(-1)) / float(N*N) # magnetization 함수 정의, magnetization = 1의 개수 + (-1)의 개수 / (N*N)
 print('magnetization:',magnetization) 
 
- 
+
 sea.heatmap(S[:N, :N])
 p.axis('off')
 p.show()
